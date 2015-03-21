@@ -1,0 +1,20 @@
+package com.cueify.gui.panel.cueeditor.tabs.wait;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.WaitCue;
+import com.cueify.gui.panel.BasicGUIViewModel;
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.cueeditor.CueEditorModel;
+
+public class CueEditorWaitController extends BasicGUIViewModel<CueEditorModel, CueEditorWait> {
+	
+	@Override
+	public void linkControllerToView(CueEditorWait panel) {
+		WaitCue cue = getModel().
+		panel.waitControl.timeElapsed().bindBidirectional(cue.waitTime());
+	}
+
+
+}

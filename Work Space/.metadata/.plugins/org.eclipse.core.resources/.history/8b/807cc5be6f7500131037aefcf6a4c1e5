@@ -1,0 +1,27 @@
+package com.cueify.gui.panel.cueeditor.tabs.wait;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+
+public class CueEditorWaitController implements GUIViewModel {
+	
+	private CueEditorWaitModel model;
+
+	@Override
+	public void linkControllerToView(Node panel) {
+
+	}
+
+	@Override
+	public GUIModel getModel() {
+		return model;
+	}
+
+	@Override
+	public void setModel(GUIModel model) {
+		this.model = (CueEditorWaitModel) model;
+	}
+
+}

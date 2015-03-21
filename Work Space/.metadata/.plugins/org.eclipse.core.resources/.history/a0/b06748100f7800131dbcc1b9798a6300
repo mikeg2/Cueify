@@ -1,0 +1,47 @@
+package com.cueify.gui.panel.addlist;
+
+import java.net.URL;
+
+import com.cueify.cue.Cue;
+import com.cueify.extension.Unselectable;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIViewCallback;
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.ViewModelDeleget;
+import com.cueify.gui.panel.addlist.cuegui.ListCueGUI;
+import com.cueify.gui.panel.addlist.cuegui.cell.ListCueCell;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
+import javafx.util.Callback;
+
+public class AddList extends ListView<Cue> implements ViewModelDeleget<AddListModel, AddList>, GUIViewCallback{
+	final URL FXML_LOCATION = getClass().getResource("AddListFXML.fxml");
+	@FXML public ListView<ListCueGUI> listView;
+	
+	public AddList() {
+		AddListModel model =  new AddListModel();
+		new GUIPanelOrganizer<AddListModel, AddList>(this, FXML_LOCATION, model, this, this);
+	}
+
+	@Override
+	public GUIViewModel<AddListModel, AddList> createViewModel() {
+		return new AddListViewModel();
+	}
+
+	@Override
+	public void fxmlLoaded() {
+		listView.setCellFactory(new Callback<ListView<ListCueGUI>, ListCell<ListCueGUI>>() {
+
+			@Override
+			public ListCell<ListCueGUI> call(ListView<ListCueGUI> arg0) {
+				return new ListCueCell();
+			}
+			
+		});		
+	}
+
+
+}

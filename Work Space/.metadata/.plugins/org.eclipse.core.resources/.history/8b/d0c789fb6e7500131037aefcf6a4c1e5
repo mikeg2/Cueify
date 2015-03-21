@@ -1,0 +1,8 @@
+package com.cueify.gui.panel.cueeditor.tabs.basic;
+
+import com.cueify.cuelist.CueListItem;
+
+public class CueEditorBasicsModel {
+	public CueListItem cueListItem;
+	
+}

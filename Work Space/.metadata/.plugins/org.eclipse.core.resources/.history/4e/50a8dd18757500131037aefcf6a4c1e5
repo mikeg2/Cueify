@@ -1,0 +1,18 @@
+package com.cueify.gui.graph.display.panel;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.BasicGUIViewModel;
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+
+public class GraphDisplayPanelViewModel extends BasicGUIViewModel<GraphDisplayPanelModel, GraphDisplayPanel> {
+	private GraphDisplayPanelModel model;
+
+	@Override
+	public void linkControllerToView(GraphDisplayPanel panel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

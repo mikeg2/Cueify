@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.shape.*?>
+<?import com.cueify.gui.panel.cuetable.*?>
+<?import com.cueify.extension.*?>
+<?import com.cueify.gui.panel.cuetable.helper.* ?>
+
+<fx:root type="com.cueify.gui.panel.cuetable.CueTable" blendMode="SRC_OVER" xmlns:fx="http://javafx.com/fxml" >
+  <children>
+  <ReorderableCueTable  fx:id="reorderableCueTable" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0">
+    <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
+    <columns>
+      <TableColumn id="" style="" text="Name" fx:id="nameColumn" />
+      <TableColumn prefWidth="75.0" style="" text="Number" fx:id="numberColumn" />
+      <TableColumn prefWidth="75.0" text="Target" fx:id="targetColumn" />
+      <TableColumn prefWidth="75.0" text="Pre Wait" fx:id="preWaitColumn" />
+      <TableColumn prefWidth="75.0" text="Content" fx:id="contentColumn" />
+      <TableColumn prefWidth="75.0" text="Post Wait" fx:id="postWaitColumn" />
+    </columns>
+  </ReorderableCueTable>
+  </children>
+</fx:root>

@@ -1,0 +1,5 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+public class CueEditorAudioModel {
+
+}

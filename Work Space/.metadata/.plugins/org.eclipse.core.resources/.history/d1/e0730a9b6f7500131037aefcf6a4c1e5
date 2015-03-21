@@ -1,0 +1,26 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.AudioCue;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIReference;
+
+public class CueEditorAudioModel implements GUIModel {
+	private AudioCue cue;
+
+	public CueEditorAudioModel(GUIReference dictionary) {
+		setReferenceDictionary(dictionary);
+	}
+
+	@Override
+	public void setReferenceDictionary(GUIReference dict) {
+		cue = (AudioCue) dict.get("Cue");
+	}
+
+	@Override
+	public void linkModelToView(Node panel) {
+
+	}
+
+}

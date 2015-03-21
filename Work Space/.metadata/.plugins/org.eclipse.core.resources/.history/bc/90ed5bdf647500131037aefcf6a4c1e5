@@ -1,0 +1,25 @@
+package com.cueify.gui.panel.addlist;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.*;
+
+public class AddListController implements GUIViewModel{
+	private AddListModel model;
+	
+	@Override
+	public void linkControllerToView(Node panel) {
+
+	}
+
+	@Override
+	public GUIModel getModel() {
+		return model;
+	}
+
+	@Override
+	public void setModel(GUIModel model) {
+		this.model = (AddListModel) model;
+	}
+
+}

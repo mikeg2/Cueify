@@ -1,0 +1,51 @@
+package com.cueify.cue;
+
+import com.cueify.ticker.Tickable;
+import com.cueify.time.TimeElapsed;
+import com.cueify.timeline.Timeline;
+import com.cueify.timeline.tickable.TickableTimeline;
+
+public abstract class Cue implements Tickable, Timeline{
+	protected TickableTimeline mainTimeline;
+
+	@Override
+	public void play() {
+		mainTimeline.play();
+	}
+
+	@Override
+	public void play(TimeElapsed startAtTime) {
+		mainTimeline.play(startAtTime);
+	}
+
+	@Override
+	public void movePlayheadTo(TimeElapsed atTime) {
+		mainTimeline.movePlayheadTo(atTime);
+	}
+
+	@Override
+	public void pause() {
+		mainTimeline.pause();
+	}
+
+	@Override
+	public void stop() {
+		mainTimeline.stop();
+	}
+
+	@Override
+	public void reset() {
+		mainTimeline.reset();
+	}
+
+	@Override
+	public TimeElapsed getPlayhead() {
+		return mainTimeline.getPlayhead();
+	}
+
+	@Override
+	public void tick(TimeElapsed timeSinceLastTick) {
+		mainTimeline.tick(timeSinceLastTick);
+	}
+	
+}

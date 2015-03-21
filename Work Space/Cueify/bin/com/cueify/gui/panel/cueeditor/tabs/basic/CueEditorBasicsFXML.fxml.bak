@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<GridPane prefHeight="167.0" styleClass="test" xmlns:fx="http://javafx.com/fxml" fx:controller="com.cueify.gui.presenter.cueeditor.tabs.basic.CueEditorBasicsController">
+  <children>
+    <Label text="Title" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+    <Label text="Number" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+    <Label text="Color" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+    <ColorPicker fx:id="cueColor" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+    <TextField fx:id="titleField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+    <TextField fx:id="numberField" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    <Label text="Pre Wait" GridPane.columnIndex="2" GridPane.rowIndex="0">
+      <GridPane.margin>
+        <Insets left="10.0" fx:id="x1" />
+      </GridPane.margin>
+    </Label>
+    <Label text="Post Wait" GridPane.columnIndex="2" GridPane.margin="$x1" GridPane.rowIndex="1" />
+    <TextField prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+      <GridPane.margin>
+        <Insets right="15.0" fx:id="x2" />
+      </GridPane.margin>
+    </TextField>
+    <TextField prefWidth="200.0" GridPane.columnIndex="3" GridPane.margin="$x2" GridPane.rowIndex="1" />
+  </children>
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="10.0" prefWidth="65.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="233.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="85.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="215.0" />
+  </columnConstraints>
+  <padding>
+    <Insets left="15.0" top="10.0" />
+  </padding>
+  <rowConstraints>
+    <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="32.0" minHeight="10.0" prefHeight="32.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="20.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="19.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+</GridPane>

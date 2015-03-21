@@ -1,0 +1,44 @@
+package com.cueify.gui.panel.addlist.cuegui.cell;
+
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
+
+import com.cueify.cue.Cue;
+import com.cueify.cuelist.CueListItem;
+import com.cueify.extension.LocalDragboard;
+import com.cueify.gui.panel.BasicGUIViewModel;
+import com.cueify.gui.panel.GUIViewModel;
+
+public class ListCueCellViewModel extends BasicGUIViewModel<ListCueCellModel, ListCueCellBack> {
+	ListCueCellModel model;
+	
+	@Override
+	public void linkControllerToView(final ListCueCellBack panel) {
+		panel.setOnDragDetected(new EventHandler<Event>() {
+
+			@Override
+			public synchronized void handle(Event event) {
+				Dragboard db = panel.startDragAndDrop(TransferMode.MOVE);
+				
+				ClipboardContent content = new ClipboardContent();
+				content.putString(model.gui.toString());
+				
+				db.setContent(content);
+				event.consume();
+				
+				LocalDragboard.getInstance().clearAll();
+				LocalDragboard.getInstance().putValue(CueListItem.class, new CueListItem(model.gui.createCue(), null));
+				System.out.println("Drag Started");
+			}
+		});
+		panel.typeLabel;
+		panel.typeLabel.setText(model.gui.getTitle());
+//		Image image = new Image(gui.getPathToImage().toString());
+//		panel.icon.setImage(image);
+	}
+
+}

@@ -1,0 +1,53 @@
+package com.cueify.gui.panel.cueeditor;
+
+import java.util.ArrayList;
+
+import com.cueify.cue.Cue;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.cueeditor.tabs.CueEditorTabPresenter;
+import com.cueify.gui.panel.cueeditor.tabs.TabGUIManager;
+
+import javafx.scene.Node;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+
+public class CueEditor extends TabPane{
+	
+	/**
+	 * 
+	 */
+	public CueEditor(Cue toEdit) {
+		GUIReference ref = turnArgIntoRef(toEdit);
+		setUpGUI(ref);
+		new CueEditorOrganizer(this, null, ref);
+	}
+
+	private GUIReference turnArgIntoRef(Cue toEdit) {
+		GUIReference ref = new GUIReference();
+		ref.put("Cue", toEdit);
+		return ref;
+	}
+
+	private void setUpGUI(GUIReference ref) {
+		createNodeAndLink(ref);
+	}
+
+	private Node createNodeAndLink(GUIReference ref) {
+		Tab[] tabs = getCueTabs(ref);
+		TabPane node = this;
+		node.getTabs().addAll(tabs);
+		return node;
+	}
+
+	private Tab[] getCueTabs(GUIReference ref) {
+		[] presenters =  TabGUIManager.getTabsForRef(ref);
+		ArrayList<Tab> tabs = new ArrayList<>();
+		for (CueEditorTabPresenter presenter : presenters) {
+			tabs.add(presenter.getTab());
+		}
+		Tab[] tabArray = new Tab[tabs.size()];
+		tabs.toArray(tabArray);
+		return tabArray;
+	}
+	
+}

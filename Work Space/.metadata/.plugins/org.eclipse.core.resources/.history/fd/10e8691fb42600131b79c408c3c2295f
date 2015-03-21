@@ -1,0 +1,42 @@
+package com.cueify.gui.controls.filemanager;
+
+import java.io.File;
+
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+
+public class FileChooserButton extends javafx.scene.control.Control {
+	public enum ChooseState {NONE_SELECTED, SELECTED};
+	
+	final String IMAGE_NONE_LOCATION = "resources/images/icons/other/target_circle.png";
+	
+	ObjectProperty<File> fileProperty = new SimpleObjectProperty<File>(null);
+
+	public FileChooserButton() {
+		getStyleClass().add("file-chooser-button");
+	}
+	
+   @Override
+   protected String getUserAgentStylesheet() {
+      return MyCustomControl.class.getResource("customcontrol.css").toExternalForm();
+   }
+	   
+	public ChooseState getState() {
+		if (fileProperty.getValue() == null)
+			return ChooseState.NONE_SELECTED;
+		return ChooseState.SELECTED;
+	}
+
+	public File getFile() {
+		return fileProperty.getValue();
+	}
+	
+	public void setFile(File f) {
+		fileProperty.setValue(f);
+	}
+	
+	public ObjectProperty<File> file() {
+		return fileProperty;
+	}
+	
+}

@@ -1,0 +1,68 @@
+package com.cueify.gui.controls.validate;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TextField;
+
+/**
+ * Allows the value of a textfield to be limited to a certain type of input and translates the input
+ * into a certain data type.
+ * 
+ * Uses the following rules:
+ * 
+ * 1) Any visual input, as long as it is readable, will not be changed until the user clicks away
+ * 2) Any readable input will take effect immediately, as it is typed
+ * 3) If the field understands the input in a non-standard form, the input should be transformed
+ * into standard form as soon as the field is no longer focused
+ * 4) If non-valid input that is not understandable by the class is given, it will no be typed.
+ *
+ */
+public abstract class TextFieldValidateControl extends TextField {
+	
+	public TextFieldValidateControl() {
+		initNewProperty();
+		linkTextFieldToValue();
+		linkValueToTextField();
+		setDefaultValue();
+	}
+
+	private void linkTextFieldToValue() {
+		this.textProperty().addListener(new ChangeListener<String>() {
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable,
+					String oldValue, String newValue) {
+				try{
+					saveStringAsValue(newValue);
+				} catch(IllegalArgumentException e) {
+//					textProperty().setValue(oldValue);
+				}
+			}
+		
+		});
+	}
+
+	protected abstract void initNewProperty();
+
+	/**
+	 * Called by TextFieldValidateControl in order to translate
+	 * the current value of the text field. If the value is
+	 * invalid, an `IllegalArgumentException` should be thrown.
+	 * 
+	 * @throws IllegalArgumentException
+	 * @param toConvert
+	 */
+	protected abstract void saveStringAsValue(String toConvert);
+
+	/**
+	 * Sets default value of value property.
+	 */
+	protected abstract void setDefaultValue();
+
+	/**
+	 * Links value property to the text field.
+	 */
+	protected abstract void linkValueToTextField();
+	
+	public abstract ObservableValue<? extends Object> getTranslatedProperty();
+}

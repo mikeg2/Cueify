@@ -1,0 +1,32 @@
+package com.cueify.gui.panel;
+
+import java.io.IOException;
+import java.net.URL;
+
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+
+public class GUIPanelLoader {
+	public static <ModelType> void loadPanel(Node root, GUIViewModel<ModelType> controller, GUIModel model, URL fxmlfile, GUIViewCallback callback) {
+		loadFXML(root, fxmlfile);
+		if(callback != null)
+			callback.fxmlLoaded();
+		setUpView(root, controller, model);
+	}
+	
+	private static void setUpView(Node root, GUIViewModel controller, GUIModel model) {
+		controller.linkControllerToView(root);
+		model.linkModelToView(root);
+	}
+
+	private static void loadFXML(Object root, URL resource) {
+		FXMLLoader fxmlLoader = new FXMLLoader(resource);
+	    fxmlLoader.setRoot(root);
+	    fxmlLoader.setController(root);
+	    try {
+	        fxmlLoader.load();
+	    } catch (IOException exception) {
+	        throw new RuntimeException(exception);
+	    }		
+	}
+}

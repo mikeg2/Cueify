@@ -1,0 +1,31 @@
+package com.cueify.gui.graph.display.panel;
+
+import java.net.URL;
+
+import com.cueify.gui.graph.display.AnyGraphDisplay;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.ViewModelDeleget;
+import com.cueify.output.graph.Graph;
+
+import javafx.fxml.FXML;
+import javafx.scene.layout.BorderPane;
+
+public class GraphDisplayPanel extends BorderPane implements ViewModelDeleget<GraphDisplayPanelModel, GraphDisplayPanel>{
+	final URL FXML_LOCATION = getClass().getResource("GraphDisplayPanelFXML.fxml");
+	@FXML public BorderPane mainArea;
+	@FXML public AnyGraphDisplay graphDisplay;
+
+	public GraphDisplayPanel(Graph initial) {
+		GraphDisplayPanelModel ref = new GraphDisplayPanelModel();
+		ref.graph = initial;
+		new GUIPanelOrganizer<GraphDisplayPanelModel, GraphDisplayPanel>(this, FXML_LOCATION, ref, this);
+	}
+
+	@Override
+	public GUIViewModel<GraphDisplayPanelModel, GraphDisplayPanel> createViewModel() {
+		return null;
+	}
+
+}

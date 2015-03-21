@@ -1,0 +1,65 @@
+package com.cueify.gui.panel.cueeditor.tabs.basic;
+
+import java.net.URL;
+
+import com.cueify.cuelist.behavior.ListItemCallNextBehavior;
+import com.cueify.gui.controls.validate.NumberField;
+import com.cueify.gui.controls.validate.TimeElapsedField;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.GUIViewCallback;
+import com.cueify.gui.panel.cueeditor.CueEditorModel;
+import com.cueify.gui.panel.cueeditor.tabs.TabGUI;
+
+import javafx.collections.FXCollections;
+import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+
+public class CueEditorBasics extends GridPane implements TabGUI, GUIViewCallback {
+	@FXML
+	public TextField titleField;
+
+	@FXML
+	public NumberField numberField;
+	
+	@FXML
+	public ColorPicker cueColor;
+	
+	@FXML
+	public TimeElapsedField preWaitField;
+	
+	@FXML
+	public TimeElapsedField postWaitField;
+
+	@FXML
+	public ChoiceBox<ListItemCallNextBehavior> callNextBehaviorField;
+
+	final URL FXML_LOCATION = getClass().getResource("CueEditorBasicsFXML.fxml");
+
+	public CueEditorBasics(CueEditorModel ref) {
+		new GUIPanelOrganizer(this, FXML_LOCATION, ref, this);
+	}
+
+	@Override
+	public String getName() {
+		return "Basics";
+	}
+
+	@Override
+	public Tab getTab() {
+		Tab basics = new Tab(getName());
+		basics.setContent(this);
+		basics.setClosable(false);
+		return basics;
+	}
+
+	@Override
+	public void fxmlLoaded() {
+		callNextBehaviorField.setItems(FXCollections.observableArrayList(ListItemCallNextBehavior.CALL_AFTER_CONTENT,
+				ListItemCallNextBehavior.CALL_AFTER_FINISHED, ListItemCallNextBehavior.CALL_AFTER_PREWAIT,
+				ListItemCallNextBehavior.CALL_NEVER));		
+	}
+}

@@ -1,0 +1,30 @@
+package com.cueify.cue;
+
+import java.io.File;
+
+import com.cueify.output.Output;
+import com.cueify.port.Port;
+import com.cueify.timeline.tickable.cue.CueTimeline;
+import com.cueify.timeline2.OutputTimeline;
+
+public abstract class MediaCue extends Cue{
+	protected Output getTimelineOutput() {
+		return ((CueTimeline) this.mainTimeline).getAudioCueTimeline();
+	}
+	
+	public void setPort(Port port) {
+		getTimelineOutput().setPort(port);
+	}
+	
+	public Port getPort() {
+		return getTimelineOutput().getPort();
+	}
+	
+	public void setFile(File file) {
+		getTimelineOutput().setFile(file);
+	}
+	
+	public File getFile() {
+		return getTimelineOutput().getFile();
+	}
+}

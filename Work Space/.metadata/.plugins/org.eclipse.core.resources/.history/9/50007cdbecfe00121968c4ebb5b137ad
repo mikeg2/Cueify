@@ -1,0 +1,57 @@
+package com.cueify.cue;
+
+import com.cueify.output.AudioOutput;
+import com.cueify.output.settings.AudioSettings;
+import com.cueify.time.TimeElapsed;
+import com.cueify.timeline2.TimelineFactory;
+
+public class AudioCue extends MediaCue {
+	
+	public AudioCue() {
+		this.mainTimeline = TimelineFactory.getAudioTimelineWithWait(new TimeElapsed(0));
+	}
+
+	public double getBalance() {
+		return ((AudioOutput)getTimelineOutput()).getBalance();
+	}
+
+	public void setBalance(double balance) {
+		((AudioOutput)getTimelineOutput()).setBalance(balance);
+	}
+
+	public double getRate() {
+		return ((AudioOutput)getTimelineOutput()).getRate();
+	}
+
+	public void setRate(double rate) {
+		((AudioOutput)getTimelineOutput()).setRate(rate);
+	}
+
+	public TimeElapsed getStartTime() {
+		return ((AudioOutput)getTimelineOutput()).getStartTime();
+	}
+
+	public void setStartTime(TimeElapsed startTime) {
+		((AudioOutput)getTimelineOutput()).setStartTime(startTime);
+	}
+
+	public TimeElapsed getStopTime() {
+		return ((AudioOutput)getTimelineOutput()).getStopTime();
+	}
+
+	public void setStopTime(TimeElapsed stopTime) {
+		((AudioOutput)getTimelineOutput()).setStopTime(stopTime);
+	}
+
+	public double getVolume() {
+		return ((AudioOutput)getTimelineOutput()).getVolume();
+	}
+
+	public void setVolume(double volume) {
+		((AudioOutput)getTimelineOutput()).setVolume(volume);
+	}
+
+	public TimeElapsed getDuration() {
+		return ((AudioOutput)getTimelineOutput()).getDuration();
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move 4 packages to &apos;Cueify/src&apos;&#x0A;- Original project: &apos;Cueify2&apos;&#x0A;- Destination element: &apos;Cueify/src&apos;&#x0A;- Original elements:&#x0A;     Cueify2/src/com.cueify.output&#x0A;     Cueify2/src/com.cueify.playable&#x0A;     Cueify2/src/com.cueify.time&#x0A;     Cueify2/src/com.cueify.port&#x0A;- Update references to refactored element" description="Move packages" destination="=Cueify/src" element1="/src&lt;com.cueify.output" element2="/src&lt;com.cueify.playable" element3="/src&lt;com.cueify.time" element4="/src&lt;com.cueify.port" flags="589830" fragments="4" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1375565002928" version="1.0"/>
+</session>

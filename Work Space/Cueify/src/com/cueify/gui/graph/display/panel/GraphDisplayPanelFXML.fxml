@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.cueify.gui.controls.validate.*?>
+<?import com.cueify.gui.graph.display.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<fx:root type="com.cueify.gui.graph.display.panel.GraphDisplayPanel" fx:id="mainArea" xmlns:fx="http://javafx.com/fxml">
+  <bottom>
+    <FlowPane hgap="20.0" minHeight="39.0" minWidth="300.0">
+      <children>
+        <HBox alignment="CENTER_LEFT">
+          <children>
+            <Label text="Graph:">
+              <HBox.margin>
+                <Insets />
+              </HBox.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT">
+              <children>
+                <SplitMenuButton mnemonicParsing="false">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Linear" />
+                    <MenuItem mnemonicParsing="false" text="Bezier" />
+                  </items>
+                  <HBox.margin>
+                    <Insets right="5.0" />
+                  </HBox.margin>
+                </SplitMenuButton>
+                <Label text="\%" />
+              </children>
+              <HBox.margin>
+                <Insets left="5.0" />
+              </HBox.margin>
+            </HBox>
+          </children>
+          <FlowPane.margin>
+            <Insets bottom="2.0" fx:id="x1" />
+          </FlowPane.margin>
+        </HBox>
+        <HBox alignment="CENTER_LEFT" FlowPane.margin="$x1">
+          <children>
+            <Label text="Y-MAX:" />
+            <HBox alignment="CENTER_LEFT">
+              <children>
+                <NumberField prefWidth="88.0">
+                  <HBox.margin>
+                    <Insets right="2.0" />
+                  </HBox.margin>
+                </NumberField>
+                <Label text="\%" />
+              </children>
+              <HBox.margin>
+                <Insets left="5.0" />
+              </HBox.margin>
+            </HBox>
+          </children>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
+          <children>
+            <Label text="Y-MIN:" />
+            <HBox alignment="CENTER_LEFT">
+              <children>
+                <NumberField prefWidth="88.0">
+                  <HBox.margin>
+                    <Insets right="2.0" />
+                  </HBox.margin>
+                </NumberField>
+                <Label text="\%" />
+              </children>
+              <HBox.margin>
+                <Insets left="5.0" />
+              </HBox.margin>
+            </HBox>
+          </children>
+        </HBox>
+      </children>
+      <padding>
+        <Insets left="5.0" right="5.0" top="10.0" />
+      </padding>
+      <BorderPane.margin>
+        <Insets bottom="5.0" left="5.0" right="5.0" />
+      </BorderPane.margin>
+    </FlowPane>
+  </bottom>
+  </fx:root>

@@ -1,0 +1,122 @@
+package com.cueify.timeline.tickable;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+
+import com.cueify.ticker.Tickable;
+import com.cueify.time.TimeElapsed;
+import com.cueify.timeline.Timeline;
+import com.cueify.timeline.TimelineState;
+import com.cueify.timeline.list.SubTimelineList;
+
+/**
+ * SuperTimeline contains "subtimelines", which must be objects that implement
+ * the com.cuify.timeline.Timeline interface. It combines these "subtimelines"
+ * onto one time scale.
+ * 
+ * NOTE: Actions outside of the subtimeline's time will not currently be executed.
+ * 
+ * @author Michael Goldfine
+ *
+ */
+
+// TODO Create a absolutePlayhead property that adjusts for everything and takes rate into account.
+// need for lazy loading.
+public class SuperTimeline extends AutoStopTimeline {
+	private SubTimelineList subTimelines = new SubTimelineList();
+	private int onTimeline = 0;
+
+	@Override
+	public void tick(TimeElapsed timeSinceLastTick) {
+		if (this.getState() == TimelineState.PLAY) {
+			tickNecissarySubTimelines(timeSinceLastTick);
+			syncPlayheadToSubTimelines();
+			System.out.println("SUPER TIMELINE: " + this.getPlayhead().getTime() );
+		} 
+	}
+
+	public Timeline getCurrentTimeline() {
+		return subTimelines.getTimelineAtIndex(onTimeline);
+	}
+
+	private void syncPlayheadToSubTimelines() {
+		TimeElapsed calculatedTime = calculateCurrentPlayheadFromSub();
+		this.moveAndExecutePlayheadTo(calculatedTime);
+	}
+
+	private TimeElapsed calculateCurrentPlayheadFromSub() {
+		TimeElapsed calculatedPlayhead = subTimelines.calculateTimeOfSubTimelinesUpToIndex(onTimeline);
+		calculatedPlayhead = calculatedPlayhead.add(getCurrentTimeline().getPlayhead());
+		return calculatedPlayhead;
+	}
+
+	private void tickNecissarySubTimelines(TimeElapsed timeSinceLastTick) {
+		for (Timeline tl : subTimelines) {
+			if (tl instanceof Tickable) {
+				((Tickable)tl).tick(timeSinceLastTick);
+			}
+		}
+	}
+
+	@Override
+	public synchronized void play() {
+		super.play();
+		getCurrentTimeline().play();
+	}
+
+	@Override
+	public synchronized void pause() {
+		super.pause();
+		for (Timeline tl : subTimelines) {
+			tl.pause();
+		}
+	}
+
+	@Override
+	public synchronized void reset() {
+		super.pause();
+		super.reset();
+		for (Timeline tl : subTimelines) {
+			tl.reset();
+		}
+		super.play();
+	}
+
+	@Override
+	public TimeElapsed getAbsoluteDuration() {
+		return getTimeOfLastEvent();
+	}
+
+	@Override
+	public TimeElapsed getTimeOfLastEvent() {
+		TimeElapsed subTimelineLast = subTimelines.getStaticDurationOfSubTimelines();
+		TimeElapsed oldTimeLast = super.getTimeOfLastEvent();
+		return subTimelineLast.compareTo(oldTimeLast) == 1 ? subTimelineLast : oldTimeLast;
+	}
+	
+	public void addTimelineAtIndex(Timeline timeline, int index) {
+		addFinishNextListener(timeline);
+		subTimelines.addTimelineAtIndex(index, timeline);
+	}
+	
+	public void addTimeline(Timeline timeline) {
+		addFinishNextListener(timeline);
+		this.subTimelines.addTimeline(timeline);
+	}
+
+	private void addFinishNextListener(Timeline timeline) {
+		timeline.state().addListener(new ChangeListener<TimelineState>() {
+			@Override
+			public synchronized void changed(ObservableValue<? extends TimelineState> observable,
+					TimelineState oldValue, TimelineState newValue) {
+				if( oldValue != TimelineState.FINISHED && newValue==TimelineState.FINISHED ) {
+					if( subTimelines.numberOfSubTimelines() < onTimeline+1)
+						stop();
+					subTimelines.getTimelineAtIndex(onTimeline+1).play();
+					onTimeline++;
+					System.out.println("------NEXT TIMELINE:" + onTimeline + "-----");
+				}
+			}
+		});
+	}
+}

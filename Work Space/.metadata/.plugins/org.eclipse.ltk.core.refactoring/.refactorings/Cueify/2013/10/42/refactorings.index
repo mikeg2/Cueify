@@ -1,0 +1,44 @@
+1381682615974	Rename field 'playerMediaURI'
+1381768136782	Rename type 'AudioOutput'
+1381768322887	Rename type 'Output'
+1381768766815	Delete element
+1381769575040	Rename type 'JavaFxBasicOutput'
+1381771349135	Delete element
+1381772485255	Rename type 'DurationToTimeElapsedBinding'
+1381881684800	Rename type 'Graph'
+1381881709802	Move compilation units
+1381882077303	Rename type 'AbsoluteGraph'
+1381882081729	Move compilation unit
+1381882176013	Delete element
+1381882184127	Delete element
+1382016645241	Rename type 'MutablePercentGraph'
+1382017096405	Move compilation unit
+1382017278177	Delete element
+1382017386815	Move compilation unit
+1382017418801	Rename type 'TimeElapsedGraph'
+1382017422074	Move compilation unit
+1382017458290	Delete element
+1382017977374	Move compilation units
+1382018008923	Delete element
+1382018284605	Delete element
+1382202529430	Delete elements
+1382202731668	Move compilation unit
+1382202806908	Rename compilation unit 'PointFactory.java'
+1382203897069	Rename type 'BasicPoint'
+1382209876295	Delete element
+1382210209747	Delete element
+1382210617941	Rename type 'MutableGraph'
+1382215142202	Rename type 'BasicPureMutablePercent'
+1382215704253	Rename type 'BasicMutableDomainPercent'
+1382215710621	Rename type 'BasicPureMutablePercent'
+1382216083983	Delete element
+1382216097205	Delete elements
+1382216833905	Rename type 'BasicFunctionGraph'
+1382217073577	Rename type 'BasicSinglePointGraph'
+1382217171983	Move compilation unit
+1382218068089	Rename type 'FunctionGraph'
+1382219004172	Rename type 'FlatPercentGraph'
+1382219833840	Rename type 'ObjectPropertyGraphLink'
+1382222608214	Delete element
+1382222843270	Move compilation unit
+1382225680767	Move compilation units

@@ -1,0 +1,27 @@
+package com.cueify.gui.controlbar.players;
+
+import java.net.URL;
+
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.ViewModelDeleget;
+import com.cueify.gui.panel.addlist.AddList;
+import com.cueify.gui.panel.addlist.AddListModel;
+import com.cueify.gui.panel.addlist.cuegui.ListCueGUI;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.GridPane;
+
+public class Players extends GridPane implements ViewModelDeleget<PlayersModel, Players> {
+	@FXML Button playButton;
+	@FXML Button pauseButton;
+	@FXML Button stopButton;
+	@FXML Button stopAllButton;
+	final URL FXML_LOCATION = getClass().getResource("PlayersFXML.fxml");
+
+	public Players() {
+		PlayersModel model =  new PlayersModel();
+		new GUIPanelOrganizer<PlayersModel, Players>(this, FXML_LOCATION, model, this);
+	}
+}

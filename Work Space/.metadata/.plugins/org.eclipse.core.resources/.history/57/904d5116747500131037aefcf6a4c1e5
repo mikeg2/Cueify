@@ -1,0 +1,23 @@
+package com.cueify.gui.panel.cuetable;
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.scene.Node;
+
+import com.cueify.cuelist.CueList;
+import com.cueify.cuelist.CueListItem;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.cuetable.callback.CueContentCallback;
+import com.cueify.gui.panel.cuetable.callback.CueNameCallback;
+import com.cueify.gui.panel.cuetable.callback.CueNumberCallback;
+import com.cueify.gui.panel.cuetable.callback.CuePostWaitCallback;
+import com.cueify.gui.panel.cuetable.callback.CuePreWaitCallback;
+import com.cueify.gui.panel.cuetable.callback.CueTargetCallback;
+import com.cueify.gui.panel.cuetable.helper.ReorderableCueTable;
+
+public class CueTableModel {
+	public CueList list;
+
+
+}

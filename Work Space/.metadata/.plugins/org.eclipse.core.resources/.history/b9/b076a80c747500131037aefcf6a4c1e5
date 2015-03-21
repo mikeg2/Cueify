@@ -1,0 +1,71 @@
+package com.cueify.gui.panel.cuetable;
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.scene.Node;
+
+import com.cueify.cuelist.CueList;
+import com.cueify.cuelist.CueListItem;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.cuetable.callback.CueContentCallback;
+import com.cueify.gui.panel.cuetable.callback.CueNameCallback;
+import com.cueify.gui.panel.cuetable.callback.CueNumberCallback;
+import com.cueify.gui.panel.cuetable.callback.CuePostWaitCallback;
+import com.cueify.gui.panel.cuetable.callback.CuePreWaitCallback;
+import com.cueify.gui.panel.cuetable.callback.CueTargetCallback;
+import com.cueify.gui.panel.cuetable.helper.ReorderableCueTable;
+
+public class CueTableModel implements GUIModel {
+	private CueList listModel;
+	
+	public void linkModelToView(Node view) {
+		bindListToTableView(view);
+	}
+
+	private void bindListToTableView(Node view) {
+		CueTable viewT = (CueTable) view;
+
+	}
+
+	private void bindItemsToTable(final CueTable view) {
+		view.reorderableCueTable.setList(listModel);
+	}
+	
+	private void bindNameToColumn(CueTable view) {
+		view.nameColumn.setCellValueFactory(new CueNameCallback());
+	}
+	
+	private void bindNumberToColumn(CueTable view) {
+		view.numberColumn.setCellValueFactory(new CueNumberCallback());
+	}
+
+	private void bindTargetToColumn(CueTable view) {
+		view.targetColumn.setCellValueFactory(new CueTargetCallback());
+	}
+
+	private void bindPreWaitToColumn(CueTable view) {
+		view.preWaitColumn.setCellValueFactory(new CuePreWaitCallback());
+	}
+	
+	private void bindPostWaitToColumn(CueTable view) {
+		view.postWaitColumn.setCellValueFactory(new CuePostWaitCallback());
+	}
+	
+	private void bindContentPointToColumn(CueTable view) {
+		view.contentColumn.setCellValueFactory(new CueContentCallback());
+	}
+
+	/**
+	 * Expects 'List' as key.
+	 */
+	@Override
+	public void setReferenceDictionary(GUIReference dict) {
+		listModel = (CueList) dict.get("List");
+	}
+
+	public CueList getCueList() {
+		return listModel;
+	}
+
+}

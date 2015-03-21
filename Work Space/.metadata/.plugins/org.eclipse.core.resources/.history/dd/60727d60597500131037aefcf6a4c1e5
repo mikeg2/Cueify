@@ -1,0 +1,29 @@
+package com.cueify.gui.panel.addlist.cuegui.cell;
+
+import java.net.URL;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIReference;
+
+public class ListCueCellOrganizer extends GUIPanelOrganizer {
+
+	public ListCueCellOrganizer(Node rootToSetUp, URL fxmlURL,
+			GUIReference dictionary) {
+		super(rootToSetUp, fxmlURL, dictionary);
+	}
+
+	@Override
+	protected GUIViewModel createController() {
+		return new ListCueCellController();
+	}
+
+	@Override
+	protected GUIModel createModel(GUIReference dictionary) {
+		return new ListCueCellModel(dictionary);
+	}
+
+}

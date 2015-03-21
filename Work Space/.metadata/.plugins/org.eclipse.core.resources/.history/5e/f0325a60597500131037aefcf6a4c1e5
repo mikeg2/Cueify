@@ -1,0 +1,29 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+import java.net.URL;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIReference;
+
+public class CueEditorAudioOrganizer extends GUIPanelOrganizer {
+
+	public CueEditorAudioOrganizer(Node rootToSetUp, URL fxmlURL,
+			GUIReference dictionary) {
+		super(rootToSetUp, fxmlURL, dictionary);
+	}
+
+	@Override
+	protected GUIViewModel createController() {
+		return new CueEditorAudioController();
+	}
+
+	@Override
+	protected GUIModel createModel(GUIReference dictionary) {
+		return new CueEditorAudioModel(dictionary);
+	}
+
+}

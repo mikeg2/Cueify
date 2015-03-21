@@ -1,0 +1,17 @@
+{
+  "/Users/Mike/Desktop/Main/Programming/Active Projects/Cueify/Work Space/Cueify/src": {
+    "location": "/Users/Mike/Desktop/Main/Programming/Active Projects/Cueify/Work Space/Cueify/src",
+    "status": "UNRESOLVED",
+    "error": "No class path info available for \u0027/Users/Mike/Desktop/Main/Programming/Active Projects/Cueify/Work Space/Cueify/src\u0027. Skipped."
+  },
+  "/Library/Java/JavaVirtualMachines/jdk1.7.0_13.jdk/Contents/Home/jre/lib/rt.jar": {
+    "coordinate": "jre:jre:zip:ovrm:1.0.0",
+    "location": "/Library/Java/JavaVirtualMachines/jdk1.7.0_13.jdk/Contents/Home/jre/lib/rt.jar",
+    "status": "RESOLVED"
+  },
+  "/Library/Java/JavaVirtualMachines/jdk1.7.0_13.jdk/Contents/Home/jre/lib/jfxrt.jar": {
+    "location": "/Library/Java/JavaVirtualMachines/jdk1.7.0_13.jdk/Contents/Home/jre/lib/jfxrt.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027/Library/Java/JavaVirtualMachines/jdk1.7.0_13.jdk/Contents/Home/jre/lib/jfxrt.jar\u0027. Neither fingerprint \u0027ca171a4743eaca00b70eeb2c919afd573e99a351\u0027 nor symbolic name \u0027jfxrt\u0027 are known."
+  }
+}

@@ -1,0 +1,29 @@
+package com.cueify.gui.panel.addlist;
+
+import java.net.URL;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIReference;
+
+public class AddListOrganizer extends GUIPanelOrganizer {
+
+	public AddListOrganizer(Node rootToSetUp, URL fxmlURL,
+			GUIReference dictionary) {
+		super(rootToSetUp, fxmlURL, dictionary);
+	}
+
+	@Override
+	protected GUIViewModel createViewModel() {
+		return new AddListController();
+	}
+
+	@Override
+	protected GUIModel createModel(GUIReference dictionary) {
+		return new AddListModel();
+	}
+
+}

@@ -1,0 +1,22 @@
+package com.cueify.gui.panel.cueeditor.tabs.basic;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.Cue;
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+
+public class CueEditorBasicsController implements GUIViewModel<> {
+	
+
+	@Override
+	public void linkControllerToView(Node panel) {
+		Cue c = getModel().;
+		panel.preWaitField.timeElapsed().bindBidirectional(c.getCueTimeline().getPreWait().waitTime());
+		panel.postWaitField.timeElapsed().bindBidirectional(c.getCueTimeline().getPostWait().waitTime());
+		panel.numberField.number().bindBidirectional(c.cueNumber());
+		panel.titleField.textProperty().bindBidirectional(c.name());
+		panel.callNextBehaviorField.valueProperty().bindBidirectional(cueListItem.callNextBehavior());
+	}
+
+}

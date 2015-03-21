@@ -1,0 +1,10 @@
+package com.cueify.gui.graph.display.panel;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.graph.display.AnyGraphDisplay;
+import com.cueify.output.graph.Graph;
+
+public class GraphDisplayPanelModel {
+	public Graph graph;
+}

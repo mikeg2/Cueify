@@ -1,0 +1,5 @@
+package com.cueify.gui.panel;
+
+public interface ViewModelDeleget<ModelType, ViewType extends Node> {
+	public GUIViewModel<ModelType, ViewType> createViewModel();
+}

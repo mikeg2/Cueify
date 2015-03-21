@@ -1,0 +1,7 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+import com.cueify.gui.panel.GUIModel;
+
+public class CueEditorAudioModel implements GUIModel {
+
+}

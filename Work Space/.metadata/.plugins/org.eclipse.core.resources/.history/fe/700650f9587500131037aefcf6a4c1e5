@@ -1,0 +1,92 @@
+package com.cueify.gui.panel;
+
+import java.net.URL;
+
+import javafx.scene.Node;
+
+/**
+ * The GUIPanelOrganizer sets up the "Panels" in the Cueify GUI
+ * 
+ * A "Panel" is simply a Node that is used as an interface element. It is often a
+ * group of controls, but IS NOT considered a control itself (as in, it is not
+ * meant to be used a more than a few situations).
+ * 
+ * In order to create a new GUIPanel:
+ * 
+ * 1) Subclass Node and create and FXML file with <fx:root> and tag defined as Node
+ * 2) Subclass GUIController and GUIModel.
+ * 3) Subclass GUIPanelOrganizer, overriding the respective functions to return your
+ * subclass of GUIController and GUIModel 
+ * 4) Make sure your Node subclass instantiates your GUIPanelOrganizer and calls organize()
+ * or, alternatively, passed arguments to the constructor.
+ * 5) Add notes to the Javadoc of your GUIPanelOrganizer specifying which keys GUIModel and
+ * GUIController expect to be passed through GUIReferenceDictionary.
+ * 
+ * 
+ * @author Mike
+ *
+ */
+public abstract class GUIPanelOrganizer<ModelType> {
+	private GUIViewModel<ModelType> controller;
+	private ModelType model;
+	private Node rootToSetUp;
+
+	public GUIPanelOrganizer(Node rootToSetUp, URL fxmlURL, ModelType ref) {
+		launch(rootToSetUp, fxmlURL, ref);
+	}
+	
+	public GUIPanelOrganizer(Node rootToSetUp, URL fxmlURL, GUIReference dictionary, GUIViewCallback callback) {
+		launch(rootToSetUp, fxmlURL, dictionary, callback);
+	}
+
+	/**
+	 * Sets up and launches a panel
+	 * @param rootToSetUp The Node that needs to be set up.
+	 * @param fxmlURL The URL of the FXML file. Set to null if no FXML
+	 * @param dictionary THe dictionary of information to pass to GUIController and GUIModel
+	 */
+	public void launch(Node rootToSetUp, URL fxmlURL, ModelType ref) {
+		launch(rootToSetUp, fxmlURL, ref, null);
+	}
+	
+	public void launch(Node rootToSetUp, URL fxmlURL, ModelType model, GUIViewCallback callback) {
+		this.model = model;
+		updateOrCreateController();
+		this.rootToSetUp = rootToSetUp;
+		if(fxmlURL != null)
+			GUIPanelLoader.loadPanel(rootToSetUp, controller, model, fxmlURL, callback);
+	}
+	
+	/**
+	 * Can be called after launch() has been called
+	 * Re-links rootToSetUp with a new Model.
+	 * @param dictionary
+	 */
+	public void reOrganize(GUIReference dictionary) {
+		updateOrCreateController();
+		controller.linkControllerToView(rootToSetUp);
+	}
+	
+	private void updateOrCreateController() {
+		if (controller != null) {
+			controller.setModel(model);
+		} else {
+			System.out.println("Controller Set");
+			controller = createController();
+			controller.setModel(model);
+		}
+	}
+	
+	private void updateOrCreateModel(GUIReference dictionary) {
+		System.out.println("Model Set");
+		if (model != null)
+			model.setReferenceDictionary(dictionary);
+		else
+			model = createModel(dictionary);
+	}
+
+	protected abstract GUIViewModel createController();
+
+	protected abstract GUIModel createModel(GUIReference dictionary);
+
+}

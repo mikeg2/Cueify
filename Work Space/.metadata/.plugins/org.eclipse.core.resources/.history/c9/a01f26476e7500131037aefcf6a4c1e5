@@ -1,0 +1,11 @@
+package com.cueify.gui.panel.cueeditor.tabs.basic;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.Cue;
+import com.cueify.cuelist.CueListItem;
+
+public class CueEditorBasicsModel {
+	public CueListItem cueListItem;
+	
+}

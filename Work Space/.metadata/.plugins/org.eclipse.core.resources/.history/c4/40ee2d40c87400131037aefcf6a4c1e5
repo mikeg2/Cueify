@@ -1,0 +1,28 @@
+package com.cueify.save.adapter.cue;
+
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
+import com.cueify.cue.AudioCue;
+import com.cueify.cue.Cue;
+import com.cueify.timeline.tickable.cue.CueTimeline;
+
+public class CueAdapter extends XmlAdapter<AdaptedCue, Cue> {
+
+	@Override
+	public Cue unmarshal(AdaptedCue v) throws Exception {
+		Cue c = null;
+		if (v instanceof AdaptedAudioCue) {
+			AdaptedAudioCue ca = new AdaptedAudioCue();
+		}
+		
+		return null;
+	}
+
+	@Override
+	public AdaptedCue marshal(Cue v) throws Exception {
+
+		
+		return null;
+	}
+
+}

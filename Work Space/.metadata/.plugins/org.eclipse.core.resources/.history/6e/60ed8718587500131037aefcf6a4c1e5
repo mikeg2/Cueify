@@ -1,0 +1,15 @@
+package com.cueify.gui.panel;
+
+import javafx.scene.Node;
+
+/**
+ * 
+ * @author Mike
+ *
+ * @param <T>
+ */
+public interface GUIController<T> {
+	public void linkControllerToView(Node panel);
+	public GUIModel getModel();
+	public void setModel(T model);
+}

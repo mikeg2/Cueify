@@ -1,0 +1,7 @@
+package com.cueify.gui.controlbar.players;
+
+import com.cueify.gui.panel.cuetable.CueTable;
+
+public class PlayersModel {
+	CueTable cueTable;
+}

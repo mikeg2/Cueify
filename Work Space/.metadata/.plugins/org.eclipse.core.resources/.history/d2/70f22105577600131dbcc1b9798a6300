@@ -1,0 +1,9 @@
+package com.cueify.gui;
+
+import javafx.scene.layout.BorderPane;
+
+public class SliderWithText extends BorderPane{
+	public SliderWithText() {
+		
+	}
+}

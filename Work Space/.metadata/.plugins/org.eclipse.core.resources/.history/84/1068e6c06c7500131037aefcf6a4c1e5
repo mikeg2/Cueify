@@ -1,0 +1,42 @@
+package com.cueify.gui.panel.cueeditor;
+
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import javafx.scene.Node;
+
+/**
+ * CueTableController acts as the controller for the fxml.
+ * It delegates the task of the model to a model class.
+ * Though it would be better for the Controller class
+ * not to know about the model, the way FXML is structured
+ * would make this very hard.
+ * 
+ * CueTableController only is the controller for the table
+ * in the application.
+ * @author Mike
+ *
+ */
+public class CueEditorViewModel implements GUIViewModel {
+	private CueEditorModel model;
+
+	public CueEditorViewModel() {
+
+	}
+
+	@Override
+	public void linkControllerToView(Node panel) {
+		
+	}
+
+	@Override
+	public GUIModel getModel() {
+		return model;
+	}
+
+	@Override
+	public void setModel(GUIModel model) {
+		this.model = (CueEditorModel) model;
+	}
+
+
+}

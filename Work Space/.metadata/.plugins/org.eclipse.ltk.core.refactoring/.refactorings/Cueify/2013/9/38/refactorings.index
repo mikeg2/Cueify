@@ -1,0 +1,14 @@
+1379203356157	Copy package
+1379203390096	Delete element
+1379203397909	Copy package
+1379203411680	Rename type 'CueEditorBasicsController'
+1379203419343	Rename type 'CueEditorBasicsModel'
+1379203427933	Rename type 'CueEditorBasicsPresenter'
+1379203436798	Rename resource 'CueEditorBasicsFXML.fxml'
+1379203450033	Delete element
+1379269177374	Rename type 'TargetCircle'
+1379269221358	Rename type 'TargetCircleBehavior'
+1379269231344	Rename type 'TargetCircleSkin'
+1379269240363	Rename resource 'TargetCircleFXML.fxml'
+1379269532502	Rename type 'FileChooseButton'
+1379806885541	Rename method 'calculateWidthOfElementsAndButton'

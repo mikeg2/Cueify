@@ -1,0 +1,102 @@
+package com.cueify.ticker;
+
+import com.cueify.time.TimeElapsed;
+import com.cueify.time.TimeUnit;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+
+//TO-DO: Move "what" should be ticked into a separate class.
+public class TimeTicker {
+	private long lastTickInMillis;
+	private ScheduledExecutorService mainTrack;
+	private final TimeTickerToTick toTick = new TimeTickerToTick();
+	private TimeElapsed tickIncrementTarget = new TimeElapsed(5);
+	private TimeElapsed totalTime = new TimeElapsed(0);
+	private boolean stop = false;
+	private boolean inTick = false;
+	
+	private synchronized void tickAllDifferenceSinceLastTick() {
+		try {
+			inTick = true;
+			long currentTime = getCurrentTimeInMillis();
+			long differenceTime = currentTime - lastTickInMillis;
+			TimeElapsed timeDifference = new TimeElapsed(TimeUnit.MILLISECOND, differenceTime);
+			totalTime = totalTime.add(timeDifference);
+			System.out.println(totalTime);
+			tickAll(timeDifference);
+			lastTickInMillis = currentTime;
+			inTick = false;
+			if (timeDifference.getTimeInMilli() < 0) {
+				System.out.println("LESS THAN 0 ------------------------------------");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private long getCurrentTimeInMillis() {
+		return System.currentTimeMillis();
+	}
+
+	private void tickAll(TimeElapsed tickThem) {
+		tickAllContentsOfIterable(toTick, tickThem);
+	}
+	
+	private void tickAllContentsOfIterable(Iterable<Tickable> iTick, TimeElapsed tickThem) {
+		for (Tickable tickable : iTick) {
+			tickable.tick(tickThem);
+		}
+	}
+	
+	/**
+	 * Creates/Starts the mainTrack tick
+	 */
+	public synchronized void startTicking(){
+		if (mainTrack == null) {
+			mainTrack =  Executors.newScheduledThreadPool(1);
+		} else if (!mainTrack.isShutdown()) {
+			return;
+		}
+		mainTrack.scheduleAtFixedRate(new Runnable() {
+			public void run() {
+				if (inTick) {
+					System.out.println("In Tick------------------------------>");
+					return;
+				}
+				tickAllDifferenceSinceLastTick();
+				if (stop) {
+					stop = false;
+					mainTrack.shutdown();
+				}
+			}
+		}, 0, (long) tickIncrementTarget.getTime(TimeUnit.MILLISECOND), java.util.concurrent.TimeUnit.MILLISECONDS);
+		setLastTickNow();
+	}
+	
+	private void setLastTickNow() {
+		lastTickInMillis = getCurrentTimeInMillis();
+	}
+
+	/**
+	 * Stops mainTrack
+	 */
+	public synchronized void stopTicking(){
+		stop = true;
+	}
+	
+	/**
+	 * @return Whether or not timer is on.
+	 */
+	public boolean isTicking() {
+		return mainTrack.isShutdown();
+	}
+
+	public TimeElapsed getTickIncrementTarget() {
+		return tickIncrementTarget;
+	}
+
+	public TimeTickerToTick getToTick() {
+		return toTick;
+	}
+}

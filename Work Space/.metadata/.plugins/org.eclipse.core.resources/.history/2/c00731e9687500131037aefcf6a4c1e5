@@ -1,0 +1,5 @@
+package com.cueify.gui.panel;
+
+public interface ModelDeleget<T> {
+	public T createModel();
+}

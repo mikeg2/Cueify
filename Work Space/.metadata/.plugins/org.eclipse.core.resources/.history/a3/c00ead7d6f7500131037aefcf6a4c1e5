@@ -1,0 +1,32 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.AudioCue;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIReference;
+
+public class CueEditorAudioModel implements GUIModel {
+	private AudioCue cue;
+
+	public CueEditorAudioModel(GUIReference dictionary) {
+		setReferenceDictionary(dictionary);
+	}
+
+	@Override
+	public void setReferenceDictionary(GUIReference dict) {
+		cue = (AudioCue) dict.get("Cue");
+	}
+
+	@Override
+	public void linkModelToView(Node panel) {
+		((CueEditorAudio) panel).volumeControl.valueProperty().bindBidirectional(cue.getAudioOutput().volume());
+		((CueEditorAudio) panel).sourceControl.file().set(cue.getAudioOutput().getSource());
+		((CueEditorAudio) panel).sourceControl.file().bindBidirectional(cue.getAudioOutput().source());
+		((CueEditorAudio) panel).rateControl.valueProperty().bindBidirectional(cue.getAudioOutput().rate());
+		((CueEditorAudio) panel).balanceControl.valueProperty().bindBidirectional(cue.getAudioOutput().balance());
+		((CueEditorAudio) panel).startTimeControl.timeElapsed().bindBidirectional(cue.getAudioOutput().startTime());
+		((CueEditorAudio) panel).endTimeControl.timeElapsed().bindBidirectional(cue.getAudioOutput().stopTime());
+	}
+
+}

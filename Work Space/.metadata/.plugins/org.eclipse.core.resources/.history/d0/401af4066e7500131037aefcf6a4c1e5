@@ -1,0 +1,30 @@
+package com.cueify.gui.panel.cueeditor.tabs.basic;
+
+import java.net.URL;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.GUIViewCallback;
+
+public class CueEditorBasicsOrganizer extends GUIPanelOrganizer {
+
+	public CueEditorBasicsOrganizer(Node rootToSetUp, URL fxmlURL,
+			GUIReference dictionary, GUIViewCallback callback) {
+		super(rootToSetUp, fxmlURL, dictionary, callback);
+	}
+
+	@Override
+	protected GUIViewModel createViewModel() {
+		return new CueEditorBasicsController();
+	}
+
+	@Override
+	protected GUIModel createModel(GUIReference dictionary) {
+		return new CueEditorBasicsModel(dictionary);
+	}
+
+}

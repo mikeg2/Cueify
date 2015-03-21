@@ -1,0 +1,64 @@
+package com.cueify.gui;
+
+
+import com.cueify.cue.AudioCue;
+import com.cueify.cuelist.CueList;
+import com.cueify.gui.presenter.addlist.AddListController;
+import com.cueify.gui.presenter.addlist.AddListPresenter;
+import com.cueify.gui.presenter.cuetable.CueTablePresenter;
+import com.cueify.ticker.TimeTicker;
+import com.cueify.ticker.TimeTickerToTick;
+import com.cueify.time.TimeElapsed;
+
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+public class CueifyApplication extends Application {
+	public static String APPLICATION_NAME = "Cueify";
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle(APPLICATION_NAME);
+		BorderPane mainPane = new BorderPane();
+		mainPane.setCenter(getCenterNode());
+		mainPane.setLeft(getLeftNode());
+		mainPane.setPrefSize(BorderPane.USE_PREF_SIZE, BorderPane.USE_PREF_SIZE);
+		Scene scene = new Scene(mainPane);
+		scene.getStylesheets().add(this.getClass().getResource("CueifyApplicationCSS.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	private Node getLeftNode() {
+		return new AddListPresenter().getNode();
+	}
+
+	private Node getCenterNode() {
+		CueList list = new CueList();
+		TimeTicker ticker = new TimeTicker();
+		((TimeTickerToTick)ticker.getToTick()).addIterableTickable(list);
+		ticker.startTicking();
+		AudioCue cue = new AudioCue();
+		cue.setName("One");
+		cue.setCueNumber(1);
+		list.addCue(cue);
+		AudioCue cue2 = new AudioCue();
+		cue2.setName("Two");
+		cue2.setCueNumber(2);
+		cue2.getCueTimeline().getPreWait().setWaitTime(new TimeElapsed(10000));
+		cue2.getCueTimeline().play();
+		list.addCue(cue2);
+		return new CueTablePresenter(list).getNode();
+	}
+
+}

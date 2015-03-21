@@ -1,0 +1,33 @@
+package com.cueify.gui.panel.cuetable;
+
+import java.net.URL;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.GUIViewCallback;
+
+public class CueTableOrganizer extends GUIPanelOrganizer {
+
+	public CueTableOrganizer(Node rootToSetUp, URL fxmlURL,
+			GUIReference dictionary, GUIViewCallback callback) {
+		super(rootToSetUp, fxmlURL, dictionary, callback);
+	}
+
+	@Override
+	protected GUIViewModel createController() {
+		CueTableController cTc= new CueTableController();
+		return cTc;
+	}
+
+	@Override
+	protected GUIModel createModel(GUIReference dictionary) {
+		CueTableModel cTm= new CueTableModel();
+		cTm.setReferenceDictionary(dictionary);
+		return cTm;
+	}
+
+}

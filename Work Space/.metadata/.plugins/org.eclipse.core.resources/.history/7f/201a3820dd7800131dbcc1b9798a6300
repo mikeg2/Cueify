@@ -1,0 +1,93 @@
+package com.cueify.gui;
+
+
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import com.cueify.cue.AudioCue;
+import com.cueify.cue.Cue;
+import com.cueify.cue.WaitCue;
+import com.cueify.cuelist.CueList;
+import com.cueify.gui.graph.display.panel.GraphDisplayPanel;
+import com.cueify.gui.linker.TableTabLinker;
+import com.cueify.gui.panel.addlist.AddList;
+import com.cueify.gui.panel.cueeditor.CueEditor;
+import com.cueify.gui.panel.cuetable.CueTable;
+import com.cueify.output.graph.BasicSingleYXPointGraph;
+import com.cueify.output.graph.Range;
+import com.cueify.output.graph.point.ImmutablePoint;
+import com.cueify.output.graph.safe.GUISafeLinearBasicSingleYXPointGraph;
+import com.cueify.save.Project;
+import com.cueify.ticker.Tickable;
+import com.cueify.ticker.TimeTicker;
+import com.cueify.ticker.TimeTickerToTick;
+import com.cueify.time.TimeElapsed;
+import com.cueify.time.TimeUnit;
+
+import javafx.application.Application;
+import javafx.beans.property.ReadOnlyDoubleProperty;
+import javafx.geometry.Orientation;
+import javafx.scene.Group;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+public class CueifyApplication extends Application {
+	static String AUDIO_URL_TO_TEST =  "file:///Users/Mike/Desktop/cs.mp3";
+
+	public static String APPLICATION_NAME = "Cueify";
+	private Project project;
+	
+	public static void main(String[] args) {
+		launch(args);
+	}
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+//		saveBasicList();
+		project = Project.open(new File("/Users/Mike/Desktop/testsave.cfy"));
+		primaryStage.setTitle(APPLICATION_NAME);
+		Node mainNode = new ProjectPane(project);
+		Group root = new Group();
+		mainPane.setCenter(mainNode);
+		Scene scene = new Scene(mainPane);
+		//scene.getStylesheets().add(this.getClass().getResource("CueifyApplicationCSS.css").toExternalForm());
+		//mainPane.setBottom(getGraphTest(scene.widthProperty()));
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	private void saveBasicList() {
+		Project p = new Project();
+		CueList list = new CueList();
+		list.add(new WaitCue(new TimeElapsed(2000)));
+		list.add(new WaitCue(new TimeElapsed(1500)));
+		AudioCue cue = new AudioCue();
+		cue.setName("Test");
+		cue.getAudioOutput().setBalance(0.2);
+		cue.getAudioOutput().setRate(2.9);
+		cue.getAudioOutput().setVolume(0.3);
+		cue.getAudioOutput().setSource(new File("/Users/Mike/Desktop/id.mp3"));
+		cue.getCueTimeline().getPreWait().setWaitTime(new TimeElapsed(200));
+		list.add(cue);
+		p.setCueList(list);
+		p.save(new File("/Users/Mike/Desktop/testsave.cfy"));
+		project = p;
+	}
+
+	private Node getGraphTest(ReadOnlyDoubleProperty width) {
+		final BasicSingleYXPointGraph graph = new GUISafeLinearBasicSingleYXPointGraph(new Range(0, 1.0), new Range(-1.0, 1.0));
+		graph.addPoint(new ImmutablePoint(0, 0));
+		graph.addPoint(new ImmutablePoint(.3, .2));
+		graph.addPoint(new ImmutablePoint(0.0, 0.8));
+		graph.addPoint(new ImmutablePoint(.9, .5));
+		graph.addPoint(new ImmutablePoint(0.5, -0.9));
+		final GraphDisplayPanel panel = new GraphDisplayPanel(graph);
+		panel.setPrefHeight(200);
+		return panel;
+	}
+}

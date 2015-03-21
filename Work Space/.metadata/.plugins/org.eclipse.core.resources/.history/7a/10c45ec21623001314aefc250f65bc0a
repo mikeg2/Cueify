@@ -1,0 +1,17 @@
+package com.cueify.gui.controls.filemanager;
+
+import javafx.scene.control.Control;
+
+import com.sun.javafx.scene.control.behavior.BehaviorBase;
+import com.sun.javafx.scene.control.skin.SkinBase;
+
+@SuppressWarnings("rawtypes")
+public class FileChooserButtonSkin extends SkinBase{
+
+	@SuppressWarnings({ "unchecked" })
+	public FileChooserButtonSkin(Control arg0, BehaviorBase arg1) {
+		super(arg0, arg1);
+		
+	}
+
+}

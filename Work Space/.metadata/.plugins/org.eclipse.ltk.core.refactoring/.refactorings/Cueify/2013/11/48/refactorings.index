@@ -1,0 +1,16 @@
+1385300193187	Delete element
+1385300215639	Delete element
+1385300217825	Copy elements
+1385300235078	Rename type 'CueEditorAudio'
+1385300247144	Rename type 'CueEditorAudioController'
+1385300259189	Rename type 'CueEditorAudioOrganizer'
+1385300267608	Rename type 'CueEditorAudioModel'
+1385300276837	Rename resource 'CueEditorAudioFXML.fxml'
+1385300518286	Delete element
+1385300762664	Delete element
+1385599970387	Delete element
+1385601779135	Rename package 'com.cueify.gui.panel'
+1385601808431	Rename package 'com.cueify.gui.backbone'
+1385831317554	Move compilation unit
+1385831369551	Rename type 'ListCueController'
+1385835047753	Rename type 'ListCueCell'

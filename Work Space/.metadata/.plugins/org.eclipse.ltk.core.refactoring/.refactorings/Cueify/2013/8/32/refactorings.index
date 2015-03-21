@@ -1,0 +1,32 @@
+1375576324193	Move compilation unit
+1375576705587	Delete element
+1375580950032	Move compilation unit
+1375580981238	Move compilation unit
+1375586873355	Rename type 'Pause'
+1375586932685	Rename type 'Play'
+1375586941036	Rename type 'Stop'
+1375590196603	Rename method 'startAtTime'
+1375628884934	Delete element
+1375672073793	Rename type 'Timeline'
+1375672410153	Rename type 'ActionableTimeline'
+1375672589841	Move compilation unit
+1375675010705	Rename type 'Playable'
+1375675020759	Delete element
+1375675083871	Rename type 'PlayableState'
+1375675301097	Rename package 'com.cueify.timeline'
+1375675315535	Rename package 'com.cueify.playable'
+1375675382832	Rename package 'com.cueify.timeline.actionable'
+1375675526523	Delete element
+1375717988953	Move compilation unit
+1375717994823	Delete element
+1375718919913	Rename local variable 'audioCue'
+1375719813899	Rename method 'calculateTimeOfSubTimelines'
+1375814187028	Rename method 'getStaticDuration'
+1376101049812	Rename type 'ActionTimeManager'
+1376101060600	Rename type 'SubTimelineManager'
+1376101072845	Rename package 'com.cueify.timeline.manager'
+1376144921820	Rename package 'com.cueify.gui.presenters'
+1376146906884	Delete element
+1376146912908	Delete element
+1376167956485	Delete elements
+1376167978080	Delete element

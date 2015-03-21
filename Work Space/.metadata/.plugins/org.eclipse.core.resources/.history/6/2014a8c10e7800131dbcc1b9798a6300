@@ -1,0 +1,73 @@
+package com.cueify.extension;
+
+import javafx.scene.control.SelectionModel;
+
+public class Unselectable<T> extends SelectionModel<T> {
+
+	@Override
+	public void clearAndSelect(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearSelection() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void clearSelection(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isSelected(int index) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void select(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void select(T obj) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void selectFirst() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void selectLast() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void selectNext() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void selectPrevious() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,7 @@
+package com.cueify.extension;
+
+import javafx.scene.control.SelectionModel;
+
+public class Unselectable extends SelectionModel<T> {
+
+}

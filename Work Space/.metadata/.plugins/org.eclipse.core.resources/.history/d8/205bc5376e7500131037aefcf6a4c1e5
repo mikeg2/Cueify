@@ -1,0 +1,32 @@
+package com.cueify.gui.panel.cueeditor.tabs.basic;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.Cue;
+import com.cueify.cuelist.CueListItem;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIReference;
+
+public class CueEditorBasicsModel implements GUIModel {
+	public CueListItem cueListItem;
+	
+	public CueEditorBasicsModel(GUIReference dictionary) {
+		setReferenceDictionary(dictionary);
+	}
+
+	@Override
+	public void setReferenceDictionary(GUIReference dict) {
+		this.cue = (Cue) dict.get("Cue");
+		this.cueListItem = (CueListItem) dict.get("CueListItem");
+	}
+
+	@Override
+	public void linkModelToView(Node panel) {
+		bindCueToView((CueEditorBasics)panel);
+	}
+
+	private void bindCueToView(CueEditorBasics panel) {
+
+	}
+	
+}

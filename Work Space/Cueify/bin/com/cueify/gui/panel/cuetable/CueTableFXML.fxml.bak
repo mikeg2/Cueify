@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<TableView fx:id="cueTable" blendMode="SRC_OVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefWidth="692.2135948" xmlns:fx="http://javafx.com/fxml" fx:controller="com.cueify.gui.presenter.cuetable.CueTableController">
+  <columns>
+    <TableColumn id="" style="" text="Name" fx:id="nameColumn" />
+    <TableColumn prefWidth="75.0" style="" text="Number" fx:id="numberColumn" />
+    <TableColumn prefWidth="75.0" text="Target" fx:id="targetColumn" />
+    <TableColumn prefWidth="75.0" text="Pre Wait" fx:id="preWaitColumn" />
+    <TableColumn prefWidth="75.0" text="Content" fx:id="contentColumn" />
+    <TableColumn prefWidth="75.0" text="Post Wait" />
+  </columns>
+</TableView>

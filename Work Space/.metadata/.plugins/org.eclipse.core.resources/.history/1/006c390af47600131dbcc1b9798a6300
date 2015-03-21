@@ -1,0 +1,7 @@
+package com.cueify.gui.controlbar.players;
+
+import javafx.scene.layout.GridPane;
+
+public class Players extends GridPane {
+
+}

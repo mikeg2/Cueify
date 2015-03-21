@@ -1,0 +1,19 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.panel.BasicGUIViewModel;
+import com.cueify.gui.panel.GUIViewModel;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.cueeditor.CueEditorModel;
+import com.cueify.gui.panel.cueeditor.tabs.basic.CueEditorBasics;
+
+public class CueEditorAudioController extends BasicGUIViewModel<CueEditorModel, CueEditorAudio> {
+	
+	@Override
+	public void linkControllerToView(CueEditorAudio panel) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,164 @@
+package com.cueify.gui.graph.display;
+
+import com.cueify.output.graph.Graph;
+import com.cueify.output.graph.Range;
+import com.cueify.output.graph.point.Point;
+
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+
+public class BasicGraphDisplay extends AnchorPane {
+	private double boxPixelWidth = 25.0;
+	private Color backgroundColor = Color.BLACK;
+	private Color lineColor = Color.GREEN;
+	private Color boxLineColor = Color.GRAY;
+	private Color axisColor = Color.BLUE;
+	private double boxLineWidth = 1;
+	private double lineWidth = 5;
+
+	private Range y_range = new Range(-1.0, 1.0);
+	private Range x_range = new Range(0.0, 1.0);
+	private Canvas mainCanvas = new Canvas();
+
+	private Graph graph;
+	public BasicGraphDisplay(final Graph g) {
+		this.graph = g;
+		this.getChildren().add(mainCanvas);
+		mainCanvas.widthProperty().bind(this.widthProperty());
+		mainCanvas.heightProperty().bind(this.heightProperty());
+		this.widthProperty().addListener(new InvalidationListener() {
+			
+			@Override
+			public void invalidated(Observable observable) {
+				drawGraph(g); //TODO make thread safe
+			}
+		});
+		this.heightProperty().addListener(new InvalidationListener() {
+			
+			@Override
+			public void invalidated(Observable observable) {
+				drawGraph(g);
+			}
+		});
+	}
+
+	public synchronized void drawGraph(Graph g) {
+		synchronized(y_range) {
+			synchronized(x_range){
+				drawBackground();
+				drawBackgroundBoxes();
+				draw0Line();
+				synchronized (g) {
+					connectLines(g);
+				}
+			}
+		}
+	}
+
+	private void draw0Line() {
+		if (y_range.isNumberWithin(0)) {
+			double y_pos = (1.0-getPercentPlaceInRange(y_range, 0))*this.getHeight();
+			GraphicsContext gc = mainCanvas.getGraphicsContext2D();
+			gc.setStroke(axisColor);
+			gc.strokeLine(0, y_pos, this.getWidth(), y_pos);
+		}
+	}
+
+	private double getPercentPlaceInRange(Range range, int i) {
+		return (i - range.getStart())/range.getLength();
+	}
+
+	private void drawBackground() {
+		GraphicsContext gc = mainCanvas.getGraphicsContext2D();
+		gc.setFill(backgroundColor);
+		gc.fillRect(0, 0, this.getWidth(), this.getHeight());
+	}
+
+	private void drawBackgroundBoxes() {
+		drawHorLines();
+		drawVertLines();
+	}
+
+	private void drawHorLines() {
+		double width = this.getHeight();
+		double onLine = boxPixelWidth;
+		GraphicsContext gc = mainCanvas.getGraphicsContext2D();
+		gc.setStroke(boxLineColor);
+		while(onLine <= width) {
+			gc.setLineWidth(boxLineWidth);
+			gc.strokeLine(0, onLine, this.getWidth(), onLine);
+			onLine += boxPixelWidth;
+		}
+	}
+
+	private void drawVertLines() {
+		double width = this.getWidth();
+		double onLine = boxPixelWidth;
+		GraphicsContext gc = mainCanvas.getGraphicsContext2D();
+		gc.setStroke(boxLineColor);
+		while(onLine <= width) {
+			gc.setLineWidth(boxLineWidth);
+			gc.strokeLine(onLine, 0, onLine, this.getHeight());
+			onLine += boxPixelWidth;
+		}
+	}
+
+	private void connectLines(Graph g) {
+		double width = this.getWidth();
+		synchronized(g) {
+			System.out.println("---START CONNECT---");
+			for (double i = 0; i < width; i+=1) {
+				double point = Range.convertPointFromRangeToRange(
+						i, new Range(0, width), x_range);
+				Point[] p = g.getPointsAtX(point);
+				drawPointsOnGraph(p);
+			}
+			System.out.println("---END CONNECT---");
+		}
+	}
+
+	private void drawPointsOnGraph(Point[] p) {
+		for (Point point : p) {
+			System.out.println("DRAWING POINT: " + p);
+			drawPointOnGraph(point);
+		}
+	}
+
+	private void drawPointOnGraph(Point p) {
+		double x_cord = Range.convertPointFromRangeToRange(
+				p.getX(), x_range, new Range(0, getWidth()));
+		double y_cord = this.getHeight() - Range.convertPointFromRangeToRange(
+				p.getY(), y_range, new Range(0, getHeight()));
+		GraphicsContext gc = mainCanvas.getGraphicsContext2D();
+		gc.setFill(lineColor);
+		gc.fillRect(x_cord-.5*lineWidth, y_cord-lineWidth, lineWidth, lineWidth);
+	}
+	
+	// Setters and Getters
+
+	public Range getYrange() {
+		return y_range;
+	}
+
+	public void setYrange(Range y_range) {
+		this.y_range = y_range;
+	}
+
+	public Range getXrange() {
+		return x_range;
+	}
+
+	public void setXrange(Range x_range) {
+		this.x_range = x_range;
+	}
+	
+	public Graph getGraph() {
+		return graph;
+	}
+}

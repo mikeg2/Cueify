@@ -1,0 +1,28 @@
+package com.cueify.gui.graph.display.panel;
+
+import javafx.scene.Node;
+
+import com.cueify.gui.graph.display.AnyGraphDisplay;
+import com.cueify.output.graph.Graph;
+
+public class GraphDisplayPanelModel implements GUIModel {
+	public Graph graph;
+
+	public GraphDisplayPanelModel(GUIReference dictionary) {
+		setReferenceDictionary(dictionary);
+	}
+
+	@Override
+	public void setReferenceDictionary(GUIReference dict) {
+		graph = (Graph) dict.get("Graph");
+	}
+
+	@Override
+	public void linkModelToView(Node panel) {
+		this.panel = (GraphDisplayPanel) panel;
+		this.panel.graphDisplay = new AnyGraphDisplay(graph);
+		this.panel.setCenter(this.panel.graphDisplay);
+	}
+
+
+}

@@ -1,0 +1,29 @@
+1388595058623	Delete element
+1388598529276	Delete element
+1388693002007	Delete element
+1388693026331	Rename type 'AudioCueAdapter'
+1388693244302	Move compilation units
+1388693266644	Rename type 'AudioAdaptedCue'
+1388788917049	Delete element
+1388850698643	Rename type 'GUIController'
+1388850756248	Delete element
+1388851248357	Rename method 'createController'
+1388851305422	Delete element
+1388856167503	Delete element
+1388856185610	Rename type 'AddListController'
+1388857920174	Delete element
+1388858014908	Delete element
+1388858258801	Rename type 'ListCueCellController'
+1388859558890	Rename type 'CueEditorController'
+1388859631011	Delete element
+1388860117566	Delete element
+1388860527940	Delete element
+1388860540629	Delete element
+1388860544059	Delete element
+1388860795610	Delete element
+1388860809794	Delete element
+1388860894724	Delete element
+1388862630930	Rename type 'CueTableController'
+1388862820082	Delete element
+1388862915987	Delete element
+1388862981835	Rename type 'GraphDisplayPanelController'

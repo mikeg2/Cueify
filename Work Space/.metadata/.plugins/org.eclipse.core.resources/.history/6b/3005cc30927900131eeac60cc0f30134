@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<fx:root type="com.cueify.gui.menubar.CueifyMenuBar" blendMode="SRC_OVER" xmlns:fx="http://javafx.com/fxml">
+  <menus>
+    <Menu text="File" mnemonicParsing="true">
+      <items>
+        <MenuItem fx:id="saveMenuItem" text="Save" />
+        <MenuItem fx:id="openMenuItem" text="Open" />
+        <MenuItem fx:id="newProjectMenuItem" text="New Project" />
+      </items>
+    </Menu>
+    <Menu text="Edit">
+      <items>
+        <MenuItem fx:id="deleteCueMenuItem" text="Delete Cue" />
+        <MenuItem fx:id="copyMenuItem" text="Copy" />
+        <MenuItem fx:id="pasteScreenMenuItem" text="Paste" />
+      </items>
+    </Menu>
+  </menus>
+</fx:root>

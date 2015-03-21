@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;com.cueify.cuelist.CueList.createItem(...)&apos; to &apos;createCueListItem&apos;&#x0A;- Original project: &apos;Cueify&apos;&#x0A;- Original element: &apos;com.cueify.cuelist.CueList.createItem(...)&apos;&#x0A;- Renamed element: &apos;com.cueify.cuelist.CueList.createCueListItem(...)&apos;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;createItem&apos;" flags="589826" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;com.cueify.cuelist{CueList.java[CueList~createItem~QCue;" name="createCueListItem" references="true" stamp="1387639929364" version="1.0"/>
+</session>

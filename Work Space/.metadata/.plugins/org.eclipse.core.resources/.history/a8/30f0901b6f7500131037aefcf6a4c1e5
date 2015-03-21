@@ -1,0 +1,44 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+import java.net.URL;
+
+import com.cueify.gui.controls.filemanager.FileChooserButton;
+import com.cueify.gui.controls.validate.TimeElapsedField;
+import com.cueify.gui.panel.GUIPanelOrganizer;
+import com.cueify.gui.panel.GUIReference;
+import com.cueify.gui.panel.cueeditor.CueEditorModel;
+import com.cueify.gui.panel.cueeditor.tabs.TabGUI;
+import com.cueify.gui.panel.cueeditor.tabs.basic.CueEditorBasics;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Slider;
+import javafx.scene.control.Tab;
+import javafx.scene.layout.GridPane;
+
+public class CueEditorAudio extends GridPane implements TabGUI{
+	final URL FXML_LOCATION = getClass().getResource("CueEditorAudioFXML.fxml");
+	@FXML public Slider volumeControl;
+	@FXML public FileChooserButton sourceControl;
+	@FXML public Slider rateControl;
+	@FXML public Slider balanceControl;
+	@FXML public TimeElapsedField startTimeControl;
+	@FXML public TimeElapsedField endTimeControl;
+
+	public CueEditorAudio(CueEditorModel ref) {
+		new GUIPanelOrganizer<CueEditorModel, CueEditorAudio>(this, FXML_LOCATION, ref, this);
+	}
+
+	@Override
+	public String getName() {
+		return "Audio";
+	}
+
+	@Override
+	public Tab getTab() {
+		Tab audio = new Tab(getName());
+		audio.setContent(this);
+		audio.setClosable(false);
+		return audio;
+	}
+
+}

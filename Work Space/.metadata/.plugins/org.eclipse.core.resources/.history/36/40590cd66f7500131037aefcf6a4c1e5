@@ -1,0 +1,27 @@
+package com.cueify.gui.panel.cueeditor.tabs.wait;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.WaitCue;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIReference;
+
+public class CueEditorWaitModel implements GUIModel {
+	private WaitCue cue;
+
+	public CueEditorWaitModel(GUIReference dictionary) {
+		setReferenceDictionary(dictionary);
+	}
+
+	@Override
+	public void setReferenceDictionary(GUIReference dict) {
+		cue = (WaitCue) dict.get("Cue");
+	}
+
+	@Override
+	public void linkModelToView(Node panel) {
+		CueEditorWait panelW = (CueEditorWait) panel;
+
+	}
+
+}

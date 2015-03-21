@@ -1,0 +1,12 @@
+package com.cueify.gui.menubar;
+
+import com.cueify.gui.panel.*;
+
+public class MenuBarViewModel extends BasicGUIViewModel<MenuBarModel, MenuBar>{
+	
+	@Override
+	public void linkControllerToView(MenuBar panel) {
+		panel.listView.setItems(MenuBarModel.cueGUIs);
+	}
+
+}

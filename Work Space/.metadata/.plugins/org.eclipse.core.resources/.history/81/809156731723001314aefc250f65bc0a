@@ -1,0 +1,54 @@
+package com.cueify.gui.controls.filemanager;
+
+import javafx.scene.control.Control;
+
+import com.sun.javafx.scene.control.behavior.BehaviorBase;
+import com.sun.javafx.scene.control.skin.SkinBase;
+
+@SuppressWarnings("rawtypes")
+public class FileChooserButtonSkin extends SkinBase{
+	final double CHOOSE_FILE_BUTTON_WIDTH = 50;
+	final double TEXT_MAX_WIDTH = 150;
+	final double PADDING_BETWEEN_TEXT_AND_BUTTON = 25;
+	final double HEIGHT = 75;
+	
+	@SuppressWarnings({ "unchecked" })
+	public FileChooserButtonSkin(Control arg0, BehaviorBase arg1) {
+		super(arg0, arg1);
+		
+	}
+
+	@Override
+	protected double computeMaxHeight(double width) {
+		return HEIGHT;
+	}
+	 
+	@Override
+	protected double computeMaxWidth(double height) {
+		return calculateWidthOfElements();
+	}
+	 
+	@Override
+	protected double computeMinHeight(double width) {
+		return HEIGHT;
+	}
+	 
+	@Override
+	protected double computeMinWidth(double height) {
+		return calculateWidthOfElements();
+	}
+	 
+	@Override
+	protected double computePrefHeight(double width) {
+		return HEIGHT;
+	}
+	 
+	@Override
+	protected double computePrefWidth(double height) {
+		return calculateWidthOfElements();
+	}
+	
+	private double calculateWidthOfElements() {
+		return CHOOSE_FILE_BUTTON_WIDTH + PADDING_BETWEEN_TEXT_AND_BUTTON + TEXT_MAX_WIDTH;
+	}
+}

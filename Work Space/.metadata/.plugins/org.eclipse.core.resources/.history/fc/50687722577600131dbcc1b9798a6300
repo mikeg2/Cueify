@@ -1,0 +1,15 @@
+package com.cueify.gui;
+
+import com.cueify.gui.controls.validate.NumberField;
+
+import javafx.scene.control.Slider;
+import javafx.scene.layout.BorderPane;
+
+public class SliderWithText extends BorderPane{
+	private Slider slider = new Slider();
+	private NumberField numberField = new NumberField();
+
+	public SliderWithText() {
+		
+	}
+}

@@ -1,0 +1,3 @@
+.file-chooser-button {
+   -fx-skin: "com.cueify.gui.controls.filemanager.FileChooserButtonSkin";
+}

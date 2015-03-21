@@ -1,0 +1,35 @@
+package com.cueify.gui.panel.cueeditor.tabs.audio;
+
+import com.cueify.cue.AudioCue;
+import com.cueify.gui.panel.cueeditor.CueEditorModel;
+import com.cueify.output.AudioOutput;
+
+public class CueEditorAudioModel {	
+	private CueEditorModel mainModel;
+	
+	public CueEditorAudioModel(CueEditorModel model) {
+		this.mainModel = model;
+	}
+	
+	public void bindModelToView(CueEditorAudioController1 view) {
+		bindCueToView(view);
+		bindExtensionsToView(view);
+	}
+
+	private void bindExtensionsToView(CueEditorAudioController1 view) {
+		view.getSourceValue().setExtensions(AudioOutput.VALID_AUDIO_EXTENSIONS);
+	}
+
+	private void bindCueToView(CueEditorAudioController1 view) {
+		AudioCue c = (AudioCue) mainModel.getCueToEdit();
+	}
+
+	public CueEditorModel getMainModel() {
+		return mainModel;
+	}
+
+	public void setMainModel(CueEditorModel mainModel) {
+		this.mainModel = mainModel;
+	}
+
+}

@@ -1,0 +1,13 @@
+package com.cueify.gui.panel.cueeditor;
+
+import javafx.scene.Node;
+
+import com.cueify.cue.Cue;
+import com.cueify.gui.panel.GUIModel;
+import com.cueify.gui.panel.GUIReference;
+
+
+public class CueEditorModel implements GUIModel{	
+	private Cue cueToEdit;
+
+}

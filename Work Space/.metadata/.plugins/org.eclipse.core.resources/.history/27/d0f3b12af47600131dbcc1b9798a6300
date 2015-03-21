@@ -1,0 +1,11 @@
+package com.cueify.gui.controlbar.players;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+
+public class Players extends GridPane {
+	@FXML Button playButton;
+	@FXML Button pauseButton;
+	
+}

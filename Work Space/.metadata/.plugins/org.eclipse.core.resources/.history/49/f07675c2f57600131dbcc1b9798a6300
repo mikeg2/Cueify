@@ -1,0 +1,13 @@
+package com.cueify.gui.controlbar.players;
+
+import com.cueify.gui.panel.BasicGUIViewModel;
+import com.cueify.gui.panel.GUIViewModel;
+
+public class PlayersViewModel extends BasicGUIViewModel<PlayersModel, Players> {
+
+	@Override
+	public void linkControllerToView(Players panel) {
+		
+	}
+
+}

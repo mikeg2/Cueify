@@ -1,0 +1,111 @@
+package com.cueify.gui;
+
+
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import com.cueify.cue.AudioCue;
+import com.cueify.cue.Cue;
+import com.cueify.cue.WaitCue;
+import com.cueify.cuelist.CueList;
+import com.cueify.gui.panel.addlist.AddList;
+import com.cueify.gui.panel.cueeditor.CueEditor;
+import com.cueify.gui.panel.cuetable.CueTable;
+import com.cueify.ticker.TimeTicker;
+import com.cueify.ticker.TimeTickerToTick;
+import com.cueify.time.TimeElapsed;
+import com.cueify.time.TimeUnit;
+
+import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.geometry.Orientation;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.control.SplitPane;
+import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+
+public class CueifyApplication extends Application {
+	static String AUDIO_URL_TO_TEST =  "file:///Users/Mike/Desktop/css.mp3";
+
+	public static String APPLICATION_NAME = "Cueify";
+	public Cue theCue = null;
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+	
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setTitle(APPLICATION_NAME);
+		Node mainNode = getMainNode();
+		BorderPane mainPane = new BorderPane();
+		mainPane.setCenter(mainNode);
+		Scene scene = new Scene(mainPane);
+		//scene.getStylesheets().add(this.getClass().getResource("CueifyApplicationCSS.css").toExternalForm());
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	private Node getMainNode() {
+		Node top = getTopOfSplitPane();
+		Node bottom = getBottomOfSplitPane();
+		SplitPane pane = new SplitPane();
+		pane.getItems().addAll(top);
+		pane.getItems().addAll(bottom);
+		pane.setOrientation(Orientation.VERTICAL);
+		return pane;
+	}
+
+	private Node getTopOfSplitPane() {
+		BorderPane mainPane = new BorderPane();
+		WaitCue cue2 = new WaitCue(new TimeElapsed(11110));
+		mainPane.setCenter(getCenterNode());
+		mainPane.setLeft(getLeftNode());
+		mainPane.setPrefSize(BorderPane.USE_PREF_SIZE, BorderPane.USE_PREF_SIZE);
+		return mainPane;
+	}
+
+	private Node getRightNode() {
+		return null;
+	}
+
+	private Node getLeftNode() {
+		return new AddList();
+	}
+
+	private Node getCenterNode() {
+		CueList list = new CueList();
+		TimeTicker ticker = new TimeTicker();
+		((TimeTickerToTick)ticker.getToTick()).addIterableTickable(list);
+		ticker.startTicking();
+		AudioCue cue = new AudioCue();
+		File fileFromURL = null;
+		try {
+			fileFromURL = new File(new URI(AUDIO_URL_TO_TEST));
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		cue.getAudioOutput().setSource(fileFromURL);
+		cue.setName("One");
+		cue.setCueNumber(1);
+		cue.getAudioOutput().setStartTime(new TimeElapsed(0));
+		cue.getAudioOutput().setStopTime(new TimeElapsed(TimeUnit.SECOND, 20));
+		cue.getCueTimeline().getPreWait().setWaitTime(new TimeElapsed(10000));
+		list.addCue(cue);
+		theCue = cue;
+		cue.getCueTimeline().play();
+		return new CueTable(list);
+	}
+
+	private Node getBottomOfSplitPane() {
+		return getBottomNode();
+	}
+
+	private Node getBottomNode() {
+		return new CueEditor(theCue);
+	}
+
+}

@@ -1,0 +1,13 @@
+Style Notes General:
+
+Methods should be defined as "public void functionName() {" with the first "{"
+on the same line as the method name and the second "}" on its own line. 
+
+Style Notes Specific:
+1) Java Properties
+
+For widely used classes, should define a setProperty(), getProperty() for setting
+the values, along with a property() function for the property itself.
+
+For classes not used widely, or only to assist another class, it is acceptable
+only to define property()
